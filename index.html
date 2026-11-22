@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROPPER — Modern English Language School | 999,000 UZS/month</title>
+  <meta name="description" content="PROPPER English Language School. Master fluency with top-tier mentors, daily immersion, and modern campuses across Tashkent. Flat tuition: 999,000 UZS / month.">
+
+  <!-- Fonts: Syne & Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti for modal submission -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#07080B',
+              dark: '#0E1118',
+              card: '#141923',
+              cardHover: '#1B2230',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderActive: 'rgba(212, 255, 0, 0.4)',
+              lime: '#D4FF00',
+              limeHover: '#BCE600',
+              cyan: '#00F0FF',
+              purple: '#9353FF',
+              accent: '#D4FF00',
+              muted: '#8A94A6'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          animation: {
+            'glow-pulse': 'glowPulse 4s ease-in-out infinite',
+            'marquee': 'marquee 25s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            glowPulse: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07080B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232936;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4FF00;
+    }
+
+    /* Ambient Noise Background */
+    .bg-noise {
+      background-image: radial-gradient(rgba(212, 255, 0, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    .glass-panel {
+      background: rgba(20, 25, 35, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg, rgba(25, 32, 46, 0.6) 0%, rgba(14, 17, 24, 0.8) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(212, 255, 0, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(212, 255, 0, 0.12);
+    }
+
+    .neon-text-glow {
+      text-shadow: 0 0 20px rgba(212, 255, 0, 0.4);
+    }
+
+    .cyan-text-glow {
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    }
+
+    /* Gradient Mask for Smooth Edges */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    /* Hide element utility */
+    .modal-hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transform: scale(0.95);
+    }
+    .modal-visible {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #D4FF00, #00F0FF, #9353FF);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-black text-slate-100 font-sans antialiased selection:bg-brand-lime selection:text-black min-h-screen relative overflow-x-hidden">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed top-[-10vw] left-[15vw] w-[45vw] h-[45vw] rounded-full bg-brand-lime/10 blur-[140px] pointer-events-none animate-glow-pulse -z-10"></div>
+  <div class="fixed top-[45vw] right-[-5vw] w-[40vw] h-[40vw] rounded-full bg-brand-cyan/10 blur-[150px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-[-10vw] left-[-5vw] w-[50vw] h-[50vw] rounded-full bg-brand-purple/10 blur-[160px] pointer-events-none -z-10"></div>
+
+  <!-- Noise Texture Layer -->
+  <div class="fixed inset-0 bg-noise pointer-events-none -z-10"></div>
+
+  <!-- ================= TOP TICKER / NOTIFICATION ================= -->
+  <header class="border-b border-brand-border bg-brand-black/90 text-xs py-2 px-4 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Live Admission Pill -->
+      <div class="flex items-center gap-2">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-lime opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-lime"></span>
+        </span>
+        <span class="font-mono text-xs uppercase tracking-wider text-slate-300">
+          Cohort Enrollment Active: <span class="text-brand-lime font-bold">1,450+ Active Students</span>
+        </span>
+      </div>
+
+      <!-- Quick Fee & Branch Highlight -->
+      <div class="hidden sm:flex items-center gap-4 text-xs font-mono text-slate-400">
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="tag" class="w-3.5 h-3.5 text-brand-lime"></i>
+          <span>Monthly Tuition: <strong class="text-white font-semibold">999,000 UZS</strong></span>
+        </span>
+        <span class="text-slate-600">•</span>
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-cyan"></i>
+          <span>4 Campuses in Tashkent</span>
+        </span>
+        <span class="text-slate-600">•</span>
+        <span class="text-slate-300">Hotline: <strong class="text-brand-lime">+998 78 555-77-99</strong></span>
+      </div>
+
+      <!-- Quick CTA Button -->
+      <div class="flex items-center gap-2">
+        <button onclick="openEnrollmentModal('Top Banner')" class="bg-brand-lime/10 hover:bg-brand-lime hover:text-black text-brand-lime text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full transition duration-200 border border-brand-lime/30 flex items-center gap-1">
+          <span>Claim Free Trial</span>
+          <i data-lucide="arrow-right" class="w-3 h-3"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN NAVIGATION ================= -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="glass-panel rounded-2xl px-5 py-3.5 flex items-center justify-between border border-white/10 shadow-2xl">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-lime to-emerald-400 flex items-center justify-center font-display font-extrabold text-black text-xl shadow-lg shadow-brand-lime/20 group-hover:rotate-6 transition-transform">
+          P
+        </div>
+        <div>
+          <div class="font-display font-extrabold tracking-tight text-2xl text-white flex items-center gap-1">
+            PROPPER<span class="text-brand-lime">.</span>
+          </div>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-slate-400 block -mt-1">English School</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#advantages" class="hover:text-brand-lime transition-colors flex items-center gap-1.5">
+          <span>Why PROPPER</span>
+        </a>
+        <a href="#tuition" class="hover:text-brand-lime transition-colors flex items-center gap-1.5 group">
+          <span>Tuition & Pricing</span>
+          <span class="bg-brand-lime/15 text-brand-lime text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">999K</span>
+        </a>
+        <a href="#branches" class="hover:text-brand-lime transition-colors flex items-center gap-1.5">
+          <span>Branches (4)</span>
+        </a>
+        <a href="#achievements" class="hover:text-brand-lime transition-colors flex items-center gap-1.5">
+          <span>Results & IELTS</span>
+        </a>
+        <a href="#placement" class="hover:text-brand-lime transition-colors">
+          <span>Quick Level Test</span>
+        </a>
+      </div>
+
+      <!-- Action Area -->
+      <div class="hidden lg:flex items-center gap-3">
+        <!-- Interactive Sound FX Toggle (Synth tone feedback) -->
+        <button id="sound-toggle-btn" onclick="toggleAudioFeedback()" title="Toggle Interface Audio" class="p-2.5 rounded-xl bg-brand-card hover:bg-slate-800 text-slate-400 hover:text-brand-lime border border-brand-border transition-colors">
+          <i data-lucide="volume-2" id="sound-icon" class="w-4 h-4"></i>
+        </button>
+
+        <button onclick="openEnrollmentModal('Navbar Main CTA')" class="relative group overflow-hidden bg-brand-lime text-black font-display font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-lime/25 hover:shadow-brand-lime/40 transition-all active:scale-95 text-sm flex items-center gap-2">
+          <span>Enroll at 999,000 UZS</span>
+          <i data-lucide="sparkles" class="w-4 h-4 transition-transform group-hover:scale-125"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white rounded-lg focus:outline-none">
+        <i data-lucide="menu" id="mobile-menu-icon" class="w-6 h-6"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-3 glass-panel rounded-2xl p-5 border border-white/10 space-y-4">
+      <div class="flex flex-col gap-3 font-medium text-base">
+        <a href="#advantages" onclick="toggleMobileMenu()" class="p-2 hover:bg-white/5 rounded-lg text-slate-200">Why PROPPER</a>
+        <a href="#tuition" onclick="toggleMobileMenu()" class="p-2 hover:bg-white/5 rounded-lg text-brand-lime flex items-center justify-between">
+          <span>Tuition & Pricing</span>
+          <span class="bg-brand-lime text-black text-xs px-2 py-0.5 rounded font-mono font-bold">999,000 UZS</span>
+        </a>
+        <a href="#branches" onclick="toggleMobileMenu()" class="p-2 hover:bg-white/5 rounded-lg text-slate-200">Branches & Locations (4)</a>
+        <a href="#achievements" onclick="toggleMobileMenu()" class="p-2 hover:bg-white/5 rounded-lg text-slate-200">Achievements & Hall of Fame</a>
+        <a href="#placement" onclick="toggleMobileMenu()" class="p-2 hover:bg-white/5 rounded-lg text-slate-200">Quick Level Test</a>
+      </div>
+      <div class="pt-3 border-t border-brand-border">
+        <button onclick="toggleMobileMenu(); openEnrollmentModal('Mobile Drawer');" class="w-full bg-brand-lime text-black font-display font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
+          <span>Enroll Now (999,000 UZS)</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Badge / Category Ticker -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-card/90 border border-brand-lime/30 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-brand-lime animate-pulse"></span>
+          <span class="font-mono text-xs uppercase tracking-wider text-brand-lime font-bold">
+            NEXT-GEN ENGLISH ACADEMY
+          </span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-cyan"></i>
+          <span>Official Cambridge & IELTS Standard</span>
+        </div>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="text-center max-w-4xl mx-auto space-y-6">
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white">
+          DON'T JUST LEARN ENGLISH. <br>
+          <span class="bg-gradient-to-r from-brand-lime via-emerald-300 to-brand-cyan bg-clip-text text-transparent neon-text-glow">
+            COMMAND FLUENCY.
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
+          The uncompromising English language ecosystem engineered for Uzbek students aiming for IELTS 7.5+, global university scholarships, and fluent confidence.
+        </p>
+
+        <!-- Bold Monthly Tuition Fee Banner (Hero Highlight) -->
+        <div class="pt-2">
+          <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-4 sm:p-5 rounded-2xl glass-panel border border-brand-lime/40 shadow-2xl relative group">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-lime text-black font-mono font-extrabold text-[11px] px-3 py-0.5 rounded-full uppercase tracking-wider shadow-md">
+              Fixed Monthly Rate • Zero Extra Fees
+            </div>
+            
+            <div class="text-left flex items-baseline gap-2">
+              <span class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">999,000</span>
+              <span class="text-brand-lime font-mono font-bold text-lg">UZS</span>
+              <span class="text-slate-400 text-sm">/ month</span>
+            </div>
+
+            <div class="hidden sm:block w-px h-8 bg-brand-border"></div>
+
+            <div class="text-xs text-slate-400 text-left font-mono">
+              <span class="text-emerald-400 font-semibold block flex items-center gap-1">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> All-Inclusive Package
+              </span>
+              <span>12 Lessons + Daily Speaking Clubs + Mocks</span>
+            </div>
+
+            <button onclick="openEnrollmentModal('Hero Pricing Card')" class="bg-brand-lime hover:bg-brand-limeHover text-black font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-xl transition duration-200 shadow-md">
+              Lock This Price
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openEnrollmentModal('Hero Primary CTA')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-lime to-emerald-400 text-black font-display font-extrabold text-base tracking-wide shadow-xl shadow-brand-lime/20 hover:shadow-brand-lime/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+            <span>START WITH A FREE TRIAL LESSON</span>
+            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+          </button>
+          <a href="#branches" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-brand-card hover:bg-slate-800 text-white font-medium text-base border border-brand-border transition-all flex items-center justify-center gap-2 group">
+            <i data-lucide="map-pin" class="w-5 h-5 text-brand-cyan group-hover:scale-110 transition-transform"></i>
+            <span>Explore 4 Campuses</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ================= KINETIC STATS COUNTER BAR ================= -->
+      <div id="stats-section" class="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        
+        <!-- Stat 1: Active Student Count (PROMINENT REQUIREMENT) -->
+        <div class="glass-card rounded-2xl p-6 text-center border-l-4 border-l-brand-lime relative overflow-hidden group">
+          <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+            <i data-lucide="users" class="w-24 h-24 text-brand-lime"></i>
+          </div>
+          <div class="flex items-center justify-center gap-1.5 text-brand-lime mb-2">
+            <i data-lucide="users-2" class="w-4 h-4"></i>
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider">Active Enrollment</span>
+          </div>
+          <div class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <span class="counter" data-target="1450">0</span><span class="text-brand-lime">+</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 mt-2 font-medium">
+            Active Students Enrolled
+          </p>
+          <span class="inline-block mt-3 text-[11px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+            +180 joined this month
+          </span>
+        </div>
+
+        <!-- Stat 2: Fixed Monthly Tuition -->
+        <div class="glass-card rounded-2xl p-6 text-center border-l-4 border-l-brand-cyan relative overflow-hidden group">
+          <div class="flex items-center justify-center gap-1.5 text-brand-cyan mb-2">
+            <i data-lucide="credit-card" class="w-4 h-4"></i>
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider">Transparent Fee</span>
+          </div>
+          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <span>999K</span> <span class="text-brand-cyan font-mono text-xl">UZS</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 mt-2 font-medium">
+            Monthly All-Access Fee
+          </p>
+          <span class="inline-block mt-3 text-[11px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 px-2 py-0.5 rounded-full">
+            999.000 so'm / month
+          </span>
+        </div>
+
+        <!-- Stat 3: Average Band Score -->
+        <div class="glass-card rounded-2xl p-6 text-center border-l-4 border-l-brand-purple relative overflow-hidden group">
+          <div class="flex items-center justify-center gap-1.5 text-brand-purple mb-2">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider">IELTS Excellence</span>
+          </div>
+          <div class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <span class="counter" data-target="8.2" data-decimals="1">0</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 mt-2 font-medium">
+            Average Graduate Band
+          </p>
+          <span class="inline-block mt-3 text-[11px] font-mono text-purple-300 bg-purple-950/40 border border-purple-500/20 px-2 py-0.5 rounded-full">
+            Top 2% in Central Asia
+          </span>
+        </div>
+
+        <!-- Stat 4: Campuses -->
+        <div class="glass-card rounded-2xl p-6 text-center border-l-4 border-l-emerald-400 relative overflow-hidden group">
+          <div class="flex items-center justify-center gap-1.5 text-emerald-400 mb-2">
+            <i data-lucide="building" class="w-4 h-4"></i>
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider">Prime Locations</span>
+          </div>
+          <div class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <span class="counter" data-target="4">0</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 mt-2 font-medium">
+            Modern Tashkent Campuses
+          </p>
+          <span class="inline-block mt-3 text-[11px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+            Near Metro Hubs
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= RUNNING KINETIC MARQUEE ================= -->
+  <div class="border-y border-brand-border bg-brand-card/40 py-3 overflow-hidden marquee-mask relative">
+    <div class="flex whitespace-nowrap animate-marquee">
+      <div class="flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-slate-300 pr-8">
+        <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-lime"></i> PROPPER ENGLISH SCHOOL</span>
+        <span class="text-brand-lime font-bold">★ 999,000 UZS / MONTH</span>
+        <span class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-brand-cyan"></i> 1,450+ ACTIVE STUDENTS</span>
+        <span>★ GUARANTEED IELTS 7.5+</span>
+        <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-purple"></i> 4 TASHKENT CAMPUSES</span>
+        <span>★ DAILY SPEAKING CLUBS</span>
+        <span>★ ZERO BORING GRAMMAR DRILLS</span>
+        <span>★ CAMBRIDGE CERTIFIED MENTORS</span>
+      </div>
+      <!-- Duplicate for infinite smooth loop -->
+      <div class="flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-slate-300 pr-8">
+        <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand-lime"></i> PROPPER ENGLISH SCHOOL</span>
+        <span class="text-brand-lime font-bold">★ 999,000 UZS / MONTH</span>
+        <span class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-brand-cyan"></i> 1,450+ ACTIVE STUDENTS</span>
+        <span>★ GUARANTEED IELTS 7.5+</span>
+        <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-purple"></i> 4 TASHKENT CAMPUSES</span>
+        <span>★ DAILY SPEAKING CLUBS</span>
+        <span>★ ZERO BORING GRAMMAR DRILLS</span>
+        <span>★ CAMBRIDGE CERTIFIED MENTORS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ADVANTAGES SECTION (BENTO GRID) ================= -->
+  <section id="advantages" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-brand-lime mb-2 flex items-center gap-2">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+            <span>ENGINEERED METHODOLOGY</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            WHY STUDENTS CHOOSE <br>
+            <span class="text-brand-lime">PROPPER OVER TRADITIONAL TUTORING</span>
+          </h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm leading-relaxed">
+          Traditional classes teach you rules to memorize. We train your neural muscle to think, argue, and produce fluent English intuitively.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        <!-- Bento Card 1: Immersion (Span 2 cols) -->
+        <div class="glass-card md:col-span-2 rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-lime/10 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-lime/20 transition-all"></div>
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="radio" class="w-6 h-6"></i>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-wider text-brand-lime font-bold">100% English-Only Zone</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-2 mb-3">
+              Radical Conversational Immersion
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              From the second you step past our reception, native English is the only protocol. You don't just attend grammar drills—you participate in Oxford-style debates, startup pitches, and real-time news analyses.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-brand-border flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>Daily Speaking Clubs Included</span>
+            <span class="text-brand-lime font-semibold">6 Days / Week</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Elite Mentors -->
+        <div class="glass-card md:col-span-1 rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="crown" class="w-6 h-6"></i>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-wider text-brand-cyan font-bold">Strict 4% Acceptance</span>
+            <h3 class="font-display text-xl font-bold text-white mt-2 mb-3">
+              IELTS 8.5–9.0 & CELTA Mentors
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Every mentor undergoes rigorous background audits and pedagogical simulations. No student interns or untested instructors.
+            </p>
+          </div>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="text-xs font-mono text-slate-400">All Instructors Certified</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Micro Cohorts -->
+        <div class="glass-card md:col-span-1 rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-purple/10 border border-brand-purple/30 flex items-center justify-center text-brand-purple mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="users" class="w-6 h-6"></i>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-wider text-brand-purple font-bold">High Attention</span>
+            <h3 class="font-display text-xl font-bold text-white mt-2 mb-3">
+              Micro-Cohorts (Max 10-12)
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Zero crowded lecture halls. In small groups, your individual active speaking time increases threefold compared to traditional centers.
+            </p>
+          </div>
+          <div class="mt-6 text-xs font-mono text-brand-purple">
+            Active Feedback Guarantee
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Sunday Mock Arenas -->
+        <div class="glass-card md:col-span-1 rounded-3xl p-8 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="clock" class="w-6 h-6"></i>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-bold">Weekly Diagnostics</span>
+            <h3 class="font-display text-xl font-bold text-white mt-2 mb-3">
+              Sunday Mock Exam Arena
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Full 3-hour exam simulations replicating IDP & British Council test rooms with computer-based & paper formats + 1-on-1 essay teardowns.
+            </p>
+          </div>
+          <div class="mt-6 text-xs font-mono text-slate-400">
+            Free for all enrolled students
+          </div>
+        </div>
+
+        <!-- Bento Card 5: Modern Campuses & Lounge (Span 2 cols) -->
+        <div class="glass-card md:col-span-2 rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-cyan/20 transition-all"></div>
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-yellow-400 mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="coffee" class="w-6 h-6"></i>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-wider text-yellow-400 font-bold">Student Life & Co-Working</span>
+            <h3 class="font-display text-2xl font-bold text-white mt-2 mb-3">
+              24/7 Co-Working Lounges & Free Coffee
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              All 4 branches feature high-speed optical fiber WiFi, sound-dampened focus study pods, open library shelves, and unlimited espresso. Treat PROPPER as your personal productivity haven.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-brand-border flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="wifi" class="w-3.5 h-3.5 text-brand-lime"></i> High-Speed Mesh</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-cyan"></i> Cambridge Library</span>
+            <span class="text-brand-lime font-bold">Access Included in 999,000 UZS</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= DEDICATED TUITION & ENROLLMENT SECTION (999,000 UZS) ================= -->
+  <section id="tuition" class="py-24 relative bg-gradient-to-b from-brand-black via-brand-dark to-brand-black border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-lime/10 border border-brand-lime/30 text-brand-lime font-mono text-xs uppercase tracking-wider mb-3">
+          <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+          <span>Transparent Pricing Manifesto</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          ONE FLAT RATE. <br>
+          <span class="text-brand-lime neon-text-glow">999,000 UZS / MONTH.</span>
+        </h2>
+        <p class="text-slate-300 mt-4 text-base sm:text-lg">
+          No hidden book fees. No registration surcharges. No surprise mock test fees. A single, honest monthly investment for total English transformation.
+        </p>
+      </div>
+
+      <!-- Main Pricing Card Bento Showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: The Master Plan Card (8 Cols) -->
+        <div class="lg:col-span-8 glass-panel rounded-3xl p-8 sm:p-10 border-2 border-brand-lime/50 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute top-0 right-0 bg-brand-lime text-black font-display font-bold text-xs uppercase tracking-wider px-5 py-1.5 rounded-bl-2xl shadow-lg">
+            Most Popular • Full Immersion Cohort
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-brand-border">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-widest text-brand-lime">PROPPER STANDARD TUITION</span>
+                <h3 class="font-display text-3xl font-extrabold text-white mt-1">Full-Access Membership</h3>
+                <p class="text-sm text-slate-400 mt-1">Available across all 4 branches or hybrid online</p>
+              </div>
+
+              <!-- Price Tag -->
+              <div class="text-left sm:text-right">
+                <div class="flex items-baseline gap-1.5">
+                  <span class="font-display text-4xl sm:text-5xl font-extrabold text-white">999,000</span>
+                  <span class="text-brand-lime font-mono font-bold text-xl">UZS</span>
+                </div>
+                <span class="text-slate-400 text-xs font-mono">999.000 so'm / month</span>
+              </div>
+            </div>
+
+            <!-- What's included checklist -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-8">
+              
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">12 Intensive Core Lessons</h4>
+                  <p class="text-xs text-slate-400">90-min interactive sessions with IELTS 8.5+ lead mentor</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Unlimited Daily Speaking Clubs</h4>
+                  <p class="text-xs text-slate-400">Join anytime Monday to Saturday with foreign mentors</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Weekly Full-Length Mocks</h4>
+                  <p class="text-xs text-slate-400">Detailed diagnostic score report and essay correction</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">24/7 Co-Working & Study Lounge</h4>
+                  <p class="text-xs text-slate-400">High-speed Wi-Fi, silent pods, free specialty espresso</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Free Learning Materials</h4>
+                  <p class="text-xs text-slate-400">PROPPER customized workbooks, digital vocabulary decks</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Score Progression Guarantee</h4>
+                  <p class="text-xs text-slate-400">Guaranteed score progression with contract protection</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom CTA bar inside pricing card -->
+          <div class="pt-6 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+              <i data-lucide="clock" class="w-4 h-4 text-brand-lime"></i>
+              <span>Next Cohort Starts in: <strong class="text-white">4 Days</strong></span>
+            </div>
+
+            <button onclick="openEnrollmentModal('Pricing Card Full Access')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-lime hover:bg-brand-limeHover text-black font-display font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-brand-lime/30 transition-all flex items-center justify-center gap-2 active:scale-95">
+              <span>Enroll For 999,000 UZS</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Tuition Comparison Card (4 Cols) -->
+        <div class="lg:col-span-4 glass-card rounded-3xl p-8 flex flex-col justify-between border border-brand-border">
+          <div>
+            <div class="flex items-center gap-2 text-brand-cyan text-xs font-mono font-bold uppercase tracking-wider mb-2">
+              <i data-lucide="scale" class="w-4 h-4"></i>
+              <span>Value Comparison</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">Why 999K UZS is Unmatched</h3>
+            <p class="text-xs text-slate-400 mt-2">
+              See what typical Tashkent centers charge for these services separately:
+            </p>
+
+            <div class="space-y-3 mt-6">
+              <div class="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span class="text-slate-300">Standard English Lessons (12x)</span>
+                <span class="font-mono text-slate-400 line-through">750,000 UZS</span>
+              </div>
+              <div class="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span class="text-slate-300">Daily Speaking Club Pass</span>
+                <span class="font-mono text-slate-400 line-through">400,000 UZS</span>
+              </div>
+              <div class="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span class="text-slate-300">4x Sunday Official Mock Exams</span>
+                <span class="font-mono text-slate-400 line-through">350,000 UZS</span>
+              </div>
+              <div class="flex items-center justify-between text-xs py-2 border-b border-white/5">
+                <span class="text-slate-300">Co-Working & Study Lounge</span>
+                <span class="font-mono text-slate-400 line-through">300,000 UZS</span>
+              </div>
+              <div class="flex items-center justify-between text-xs py-2 border-b border-white/5 font-semibold">
+                <span class="text-red-400">Total Separated Market Value:</span>
+                <span class="font-mono text-red-400 line-through">1,800,000 UZS</span>
+              </div>
+            </div>
+
+            <div class="mt-6 p-4 rounded-2xl bg-brand-lime/10 border border-brand-lime/30 text-center">
+              <span class="text-xs font-mono text-slate-300 block">At PROPPER You Pay Only:</span>
+              <span class="font-display text-2xl font-extrabold text-brand-lime">999,000 UZS</span>
+              <span class="text-[11px] font-mono text-emerald-400 block mt-1">You save 800,000+ UZS every single month!</span>
+            </div>
+          </div>
+
+          <button onclick="openEnrollmentModal('Comparison Value Button')" class="mt-6 w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-mono text-xs uppercase tracking-wider border border-white/10 transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-brand-lime"></i>
+            <span>Consult Our Admissions Team</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE BRANCHES & LOCATIONS SECTION ================= -->
+  <section id="branches" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-brand-cyan mb-2 flex items-center gap-2">
+            <i data-lucide="map-pinned" class="w-3.5 h-3.5"></i>
+            <span>MODERN CAMPUSES ACROSS TASHKENT</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            FIND YOUR NEAREST <br>
+            <span class="text-brand-cyan cyan-text-glow">PROPPER CAMPUS</span>
+          </h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm leading-relaxed">
+          Strategically located within 2-5 minutes of major Tashkent metro stations. Fully equipped with audio labs, presentation halls, and co-working lounges.
+        </p>
+      </div>
+
+      <!-- Interactive Branch Selector Tabs -->
+      <div class="flex flex-wrap gap-2 p-1.5 glass-panel rounded-2xl border border-brand-border mb-8" id="branch-tabs">
+        <button onclick="switchBranch(0)" class="branch-tab-btn active px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 bg-brand-lime text-black shadow-md">
+          <i data-lucide="building-2" class="w-3.5 h-3.5"></i>
+          <span>1. Yunusabad (Main Flagship)</span>
+        </button>
+        <button onclick="switchBranch(1)" class="branch-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+          <i data-lucide="building" class="w-3.5 h-3.5"></i>
+          <span>2. Chilonzor Campus</span>
+        </button>
+        <button onclick="switchBranch(2)" class="branch-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+          <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+          <span>3. Sergeli Campus</span>
+        </button>
+        <button onclick="switchBranch(3)" class="branch-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5">
+          <i data-lucide="map" class="w-3.5 h-3.5"></i>
+          <span>4. Mirabad (Central)</span>
+        </button>
+      </div>
+
+      <!-- Active Branch Detailed Showcase Bento -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: Interactive Branch Card (7 Cols) -->
+        <div id="branch-detail-card" class="lg:col-span-7 glass-panel rounded-3xl p-8 sm:p-10 border border-brand-border shadow-2xl relative overflow-hidden transition-all duration-300">
+          
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-brand-border">
+            <div>
+              <span id="branch-badge" class="bg-brand-lime/15 text-brand-lime font-mono text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">
+                Flagship Campus • 580 Active Students
+              </span>
+              <h3 id="branch-title" class="font-display text-3xl font-extrabold text-white mt-3">
+                Yunusabad Flagship Campus
+              </h3>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-mono text-slate-400 block">Tuition Fee</span>
+              <span class="text-brand-lime font-display font-extrabold text-xl">999,000 UZS</span>
+            </div>
+          </div>
+
+          <!-- Branch Details List -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
+            
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-lime"></i> Exact Address
+              </span>
+              <p id="branch-address" class="text-sm font-semibold text-white">
+                Tashkent, Yunusabad District, 4th Quarter, Building 14/2
+              </p>
+              <p id="branch-landmark" class="text-xs text-brand-lime font-mono">
+                Landmark: 150m from Mega Planet & Shahriston Metro
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-cyan"></i> Operating Hours
+              </span>
+              <p id="branch-hours" class="text-sm font-semibold text-white">
+                Monday – Saturday: 08:30 – 21:30
+              </p>
+              <p class="text-xs text-slate-400 font-mono">
+                Sunday Mock Exams: 10:00 – 16:00
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                <i data-lucide="phone-call" class="w-3.5 h-3.5 text-emerald-400"></i> Direct Campus Contact
+              </span>
+              <p id="branch-phone" class="text-sm font-semibold text-white font-mono">
+                +998 78 555-77-91
+              </p>
+              <p class="text-xs text-slate-400">Telegram: @propper_yunusabad</p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                <i data-lucide="layers" class="w-3.5 h-3.5 text-brand-purple"></i> Campus Facilities
+              </span>
+              <p id="branch-facilities" class="text-sm font-semibold text-white">
+                8 Modern Studios, 40-Seat Mock Arena, Coffee Bar
+              </p>
+              <p class="text-xs text-brand-cyan font-mono">Dedicated Speaking Lounge</p>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-6 border-t border-brand-border flex flex-wrap items-center gap-4">
+            <button onclick="bookForCurrentBranch()" class="bg-brand-lime hover:bg-brand-limeHover text-black font-display font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition duration-200 flex items-center gap-2">
+              <i data-lucide="check" class="w-4 h-4"></i>
+              <span>Select This Branch & Enroll</span>
+            </button>
+
+            <button onclick="copyCurrentAddress()" id="copy-address-btn" class="bg-white/5 hover:bg-white/10 text-white font-mono text-xs px-4 py-3 rounded-xl border border-white/10 transition-colors flex items-center gap-2">
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-brand-cyan"></i>
+              <span id="copy-text">Copy Address</span>
+            </button>
+
+            <a id="branch-maps-link" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white font-mono text-xs flex items-center gap-1.5 ml-auto">
+              <span>Open in Maps</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Stylized Futuristic Interactive Map Card (5 Cols) -->
+        <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-brand-border relative overflow-hidden">
+          
+          <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+            <div class="flex items-center gap-2 text-xs font-mono text-brand-lime">
+              <span class="w-2 h-2 rounded-full bg-brand-lime animate-ping"></span>
+              <span>TASHKENT RADAR MAP</span>
+            </div>
+            <span class="text-xs font-mono text-slate-400">4 Operational Hubs</span>
+          </div>
+
+          <!-- Stylized SVG Map Graphic of Tashkent with clickable nodes -->
+          <div class="my-6 relative bg-brand-black/60 rounded-2xl p-4 border border-white/5 flex items-center justify-center min-h-[260px]">
+            
+            <svg class="w-full h-56" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stylized Grid Lines -->
+              <line x1="20" y1="60" x2="380" y2="60" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="20" y1="120" x2="380" y2="120" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="20" y1="180" x2="380" y2="180" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="20" x2="100" y2="220" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="200" y1="20" x2="200" y2="220" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="300" y1="20" x2="300" y2="220" stroke="#1E2533" stroke-width="1" stroke-dasharray="4 4" />
+
+              <!-- Stylized River / Road artery -->
+              <path d="M 40 180 Q 150 140 200 110 T 360 40" stroke="#00F0FF" stroke-opacity="0.25" stroke-width="3" fill="none" />
+
+              <!-- Campus Pin 1: Yunusabad (Top North) -->
+              <g class="cursor-pointer" onclick="switchBranch(0)">
+                <circle cx="210" cy="55" r="16" fill="#D4FF00" fill-opacity="0.15" class="animate-pulse" />
+                <circle id="pin-0" cx="210" cy="55" r="7" fill="#D4FF00" />
+                <text x="225" y="58" fill="#FFFFFF" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold">Yunusabad (Flagship)</text>
+              </g>
+
+              <!-- Campus Pin 2: Chilonzor (West) -->
+              <g class="cursor-pointer" onclick="switchBranch(1)">
+                <circle cx="110" cy="130" r="14" fill="#00F0FF" fill-opacity="0.15" />
+                <circle id="pin-1" cx="110" cy="130" r="6" fill="#00F0FF" />
+                <text x="125" y="133" fill="#94A3B8" font-size="10" font-family="'JetBrains Mono', monospace">Chilonzor</text>
+              </g>
+
+              <!-- Campus Pin 3: Sergeli (South) -->
+              <g class="cursor-pointer" onclick="switchBranch(2)">
+                <circle cx="140" cy="195" r="14" fill="#9353FF" fill-opacity="0.15" />
+                <circle id="pin-2" cx="140" cy="195" r="6" fill="#9353FF" />
+                <text x="155" y="198" fill="#94A3B8" font-size="10" font-family="'JetBrains Mono', monospace">Sergeli</text>
+              </g>
+
+              <!-- Campus Pin 4: Mirabad (Central) -->
+              <g class="cursor-pointer" onclick="switchBranch(3)">
+                <circle cx="260" cy="120" r="14" fill="#10B981" fill-opacity="0.15" />
+                <circle id="pin-3" cx="260" cy="120" r="6" fill="#10B981" />
+                <text x="275" y="123" fill="#94A3B8" font-size="10" font-family="'JetBrains Mono', monospace">Mirabad</text>
+              </g>
+            </svg>
+
+            <!-- Overlay label -->
+            <div class="absolute bottom-2 right-3 font-mono text-[10px] text-slate-500">
+              Interactive Pins: Click any node to preview
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="navigation" class="w-4 h-4 text-brand-lime"></i>
+              <span>All campuses are currently welcoming visitors</span>
+            </span>
+            <span class="font-mono text-emerald-400 font-bold">Open Today</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ACHIEVEMENTS & RESULTS SECTION ================= -->
+  <section id="achievements" class="py-24 relative bg-brand-dark/40 border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/30 text-brand-purple font-mono text-xs uppercase tracking-wider mb-3">
+          <i data-lucide="trophy" class="w-3.5 h-3.5"></i>
+          <span>PROVEN SCORE TRACK RECORD</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          HALL OF FAME & <br>
+          <span class="text-brand-purple">STUDENT ACHIEVEMENTS</span>
+        </h2>
+        <p class="text-slate-300 mt-4 text-base">
+          Our methodology turns dream scores into reality. Here are real scores achieved by PROPPER students who started from Intermediate and achieved mastery.
+        </p>
+      </div>
+
+      <!-- Score Filter Buttons -->
+      <div class="flex items-center justify-center gap-2 mb-12">
+        <button onclick="filterHallOfFame('all')" class="hof-filter active px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-brand-purple text-white shadow-md">
+          All Scores
+        </button>
+        <button onclick="filterHallOfFame('8.5')" class="hof-filter px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5">
+          Band 8.5
+        </button>
+        <button onclick="filterHallOfFame('8.0')" class="hof-filter px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5">
+          Band 8.0
+        </button>
+        <button onclick="filterHallOfFame('7.5')" class="hof-filter px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/5">
+          Band 7.5
+        </button>
+      </div>
+
+      <!-- Student Score Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="hof-container">
+
+        <!-- Card 1 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="8.5">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-brand-purple/20 border border-brand-purple/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                JA
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Jasur Alimov</h4>
+                <p class="text-xs text-slate-400 font-mono">Yunusabad Campus • 4 Months Prep</p>
+              </div>
+            </div>
+            <div class="bg-brand-lime text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              8.5
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-brand-lime">9.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-brand-lime">9.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-cyan">7.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-emerald-400">8.0</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "The daily speaking clubs completely removed my hesitation. The weekly mock tests at PROPPER felt even more rigorous than the real IDP exam!"
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Full Scholarship to Westminster
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="8.5">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-brand-cyan/20 border border-brand-cyan/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                MZ
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Madina Zokirova</h4>
+                <p class="text-xs text-slate-400 font-mono">Chilonzor Campus • 5 Months Prep</p>
+              </div>
+            </div>
+            <div class="bg-brand-lime text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              8.5
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-brand-lime">8.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-brand-lime">9.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-cyan">8.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-emerald-400">8.5</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "Paying 999,000 UZS gave me everything: unlimited mock exams, study lounge access till evening, and mentors who genuinely dissect every essay paragraph."
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-cyan-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Admitted to Inha University
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="8.0">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                SB
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Sardor Bekmuradov</h4>
+                <p class="text-xs text-slate-400 font-mono">Mirabad Campus • 3 Months Prep</p>
+              </div>
+            </div>
+            <div class="bg-white text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              8.0
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-white">8.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-white">8.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-cyan">7.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-brand-lime">7.5</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "Before PROPPER I was stuck at 6.5 writing for over a year. Their structure templates and analytical thinking drills bumped me directly to 8.0 overall."
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> WIUT Grant Winner
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="8.0">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-brand-lime/20 border border-brand-lime/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                DY
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Dildora Yusupova</h4>
+                <p class="text-xs text-slate-400 font-mono">Sergeli Campus • 6 Months Prep</p>
+              </div>
+            </div>
+            <div class="bg-white text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              8.0
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-white">8.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-white">8.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-cyan">7.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-brand-lime">8.0</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "The Sergeli branch atmosphere is like a modern Silicon Valley workspace. Everyone speaks in English and mentors are always within reach."
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-purple-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> IELTS Teacher Trainee
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="7.5">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                AK
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Azizbek Karimov</h4>
+                <p class="text-xs text-slate-400 font-mono">Yunusabad Campus • 2.5 Months</p>
+              </div>
+            </div>
+            <div class="bg-brand-cyan text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              7.5
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-white">8.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-white">8.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-lime">7.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-brand-lime">7.5</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "I only had 10 weeks before the university application deadline. PROPPER's fast-track diagnostic program helped me lock 7.5 on my first try."
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-cyan-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> MDIST Tashkent
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card rounded-3xl p-6 border border-brand-border hof-card" data-score="7.5">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-display font-bold text-white text-lg">
+                NO
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-base">Nodira Olimova</h4>
+                <p class="text-xs text-slate-400 font-mono">Chilonzor Campus • 3 Months</p>
+              </div>
+            </div>
+            <div class="bg-brand-cyan text-black font-display font-extrabold text-xl px-3 py-1 rounded-xl shadow-md">
+              7.5
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-2 my-4 text-center">
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">L</span>
+              <span class="font-bold text-sm text-white">8.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">R</span>
+              <span class="font-bold text-sm text-white">7.5</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">W</span>
+              <span class="font-bold text-sm text-brand-lime">7.0</span>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5">
+              <span class="text-[10px] font-mono text-slate-400 block">S</span>
+              <span class="font-bold text-sm text-brand-lime">7.5</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-300 italic">
+            "Transparent pricing was what convinced my parents. 999,000 UZS covered every single mock and extra speaking session without extra demands."
+          </p>
+          <div class="mt-4 pt-3 border-t border-white/5 text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Amity University Scholarship
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE LEVEL PLACEMENT TEST / CALCULATOR ================= -->
+  <section id="placement" class="py-24 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-brand-border shadow-2xl relative overflow-hidden">
+        
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-lime font-bold">INTERACTIVE ASSESSMENT</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2">
+            Find Your Recommended Track
+          </h2>
+          <p class="text-slate-400 text-sm mt-2">
+            Answer 3 quick questions to discover your optimal study plan and nearest branch slot at <span class="text-brand-lime font-mono font-bold">999,000 UZS / mo</span>.
+          </p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-wrapper">
+          
+          <!-- Question 1 -->
+          <div class="quiz-step" id="q-step-1">
+            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider block mb-2">Step 1 of 3: Primary Objective</span>
+            <h3 class="text-lg font-bold text-white mb-4">What is your core target for learning English?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="selectQuizAnswer(1, 'IELTS Academic / General Band 7.0 - 8.5')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>🎯 IELTS Target 7.0 - 8.5</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(1, 'Fluent Conversational & Career English')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>🗣️ Fluent Speaking & Career</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(1, 'General English From Scratch (Beginner / Pre-Inter)')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>📚 Strong Base From Basics</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(1, 'University / Lyceum Entrance Exams')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>🎓 University Entrance Grants</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-step hidden" id="q-step-2">
+            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider block mb-2">Step 2 of 3: Current English Comfort</span>
+            <h3 class="text-lg font-bold text-white mb-4">How comfortable are you speaking right now?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="selectQuizAnswer(2, 'I can understand simple conversations but freeze when speaking')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>Beginner / Hesitant Speaker</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(2, 'Intermediate: Can express daily ideas with grammar errors')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>Intermediate (B1–B2)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(2, 'Upper-Intermediate: Need academic vocabulary & essay polish')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>Upper-Intermediate (B2–C1)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(2, 'Advanced: Aiming strictly for 8.0+ or native mastery')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>Advanced (IELTS 8.0+ target)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="quiz-step hidden" id="q-step-3">
+            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider block mb-2">Step 3 of 3: Preferred Location</span>
+            <h3 class="text-lg font-bold text-white mb-4">Which campus would you prefer visiting?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="selectQuizAnswer(3, 'Yunusabad Flagship Campus')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>📍 Yunusabad (Mega Planet)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(3, 'Chilonzor Campus')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>📍 Chilonzor (Metro M. Ulugbek)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(3, 'Sergeli Campus')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>📍 Sergeli (Metro Station 4)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+              <button onclick="selectQuizAnswer(3, 'Mirabad Central Campus')" class="quiz-btn p-4 rounded-xl glass-card text-left text-sm font-medium hover:border-brand-lime transition-all flex items-center justify-between group">
+                <span>📍 Mirabad (Grand Mir)</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-brand-lime"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 4: Result Card -->
+          <div class="quiz-step hidden text-center" id="q-result">
+            <div class="w-16 h-16 rounded-full bg-brand-lime/10 border-2 border-brand-lime flex items-center justify-center text-brand-lime mx-auto mb-4">
+              <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+            </div>
+            <span class="text-xs font-mono uppercase tracking-wider text-brand-lime font-bold">Recommended Curriculum</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-white mt-1" id="quiz-recommended-course">
+              PROPPER IELTS Mastery & Fluency Lab
+            </h3>
+            <p class="text-slate-300 text-sm max-w-md mx-auto mt-2">
+              Based on your answers, you are eligible for our accelerated cohort at <span class="text-brand-lime font-mono font-bold">999,000 UZS / month</span> with guaranteed score progression.
+            </p>
+
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button onclick="claimQuizResult()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-lime text-black font-display font-bold text-sm uppercase tracking-wider shadow-lg shadow-brand-lime/30 hover:scale-105 transition-all">
+                Book Diagnostic Lesson With These Results
+              </button>
+              <button onclick="restartQuiz()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-mono text-xs uppercase tracking-wider border border-white/10 transition-colors">
+                Restart Quiz
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FINAL HIGH-IMPACT CTA SECTION ================= -->
+  <section class="py-20 relative overflow-hidden border-t border-brand-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <div class="glass-panel rounded-3xl p-8 sm:p-14 border border-brand-lime/40 shadow-2xl relative overflow-hidden">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lime/15 text-brand-lime font-mono text-xs uppercase tracking-wider mb-6">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Only 14 Cohort Spots Remaining Across Campuses</span>
+        </div>
+
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          READY TO BECOME PART OF OUR <br>
+          <span class="text-brand-lime neon-text-glow">1,450+ STUDENT COMMUNITY?</span>
+        </h2>
+
+        <p class="text-slate-300 max-w-xl mx-auto mt-4 text-base sm:text-lg">
+          Lock in your flat tuition of <strong class="text-white font-bold">999,000 UZS / month</strong> today. Attend a zero-risk 90-minute trial class and experience the PROPPER difference.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openEnrollmentModal('Bottom Final CTA')" class="w-full sm:w-auto px-9 py-4 rounded-xl bg-brand-lime hover:bg-brand-limeHover text-black font-display font-extrabold text-base uppercase tracking-wider shadow-xl shadow-brand-lime/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+            <span>CLAIM FREE TRIAL & RESERVE 999K UZS</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+          
+          <a href="tel:+998785557799" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-mono text-sm border border-white/10 transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4 text-brand-cyan"></i>
+            <span>Call +998 78 555-77-99</span>
+          </a>
+        </div>
+
+        <p class="text-xs font-mono text-slate-500 mt-6">
+          Free level placement assessment • No credit card required to book
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-brand-border bg-brand-black text-slate-400 py-16 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-brand-border">
+        
+        <!-- Brand Info (2 cols) -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-lime flex items-center justify-center font-display font-extrabold text-black text-xl">
+              P
+            </div>
+            <span class="font-display font-extrabold text-2xl text-white tracking-tight">PROPPER.</span>
+          </div>
+          <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+            The modern English language school engineered for ambitious Uzbek minds. Flat fee of 999,000 UZS / month with 4 prime campuses across Tashkent.
+          </p>
+          <div class="flex items-center gap-3 text-xs font-mono text-brand-lime pt-2">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Registered Educational Center in the Republic of Uzbekistan</span>
+          </div>
+        </div>
+
+        <!-- Links: Curriculum -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Curriculum</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#advantages" class="hover:text-brand-lime transition-colors">IELTS Academic 8.0+</a></li>
+            <li><a href="#advantages" class="hover:text-brand-lime transition-colors">General Fluency (CEFR C1)</a></li>
+            <li><a href="#advantages" class="hover:text-brand-lime transition-colors">Daily Speaking Clubs</a></li>
+            <li><a href="#advantages" class="hover:text-brand-lime transition-colors">Sunday Mock Arena</a></li>
+            <li><a href="#placement" class="hover:text-brand-lime transition-colors">Level Placement Test</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Campuses -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Campuses (Tashkent)</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#branches" onclick="switchBranch(0)" class="hover:text-brand-lime transition-colors">Yunusabad (Mega Planet)</a></li>
+            <li><a href="#branches" onclick="switchBranch(1)" class="hover:text-brand-lime transition-colors">Chilonzor (M. Ulugbek)</a></li>
+            <li><a href="#branches" onclick="switchBranch(2)" class="hover:text-brand-lime transition-colors">Sergeli (Metro 4)</a></li>
+            <li><a href="#branches" onclick="switchBranch(3)" class="hover:text-brand-lime transition-colors">Mirabad (Grand Mir)</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Tuition -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Admissions</h4>
+          <ul class="space-y-2.5 text-sm font-mono">
+            <li class="text-white font-bold">999,000 UZS / month</li>
+            <li class="text-slate-400">+998 78 555-77-99</li>
+            <li class="text-slate-400">info@propperschool.uz</li>
+            <li class="text-brand-cyan">Mon - Sat: 08:30 - 21:30</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <div>
+          © 2026 PROPPER English Language School. All rights reserved.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-300 transition-colors">Terms of Enrollment</a>
+          <span class="text-slate-600">|</span>
+          <span class="text-slate-400">999,000 UZS Flat Fee</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= SUBTLE STYLISH CORNER CREDIT BADGE (REQUIRED) ================= -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <div class="group flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-brand-border hover:border-brand-lime/50 shadow-2xl transition-all duration-300 cursor-default hover:scale-105">
+      <span class="w-2 h-2 rounded-full bg-brand-lime animate-pulse"></span>
+      <span class="font-mono text-[11px] text-slate-400 tracking-wider">
+        designed & crafted <span class="text-brand-lime font-bold transition-colors group-hover:text-white">by.abdulboriy</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= INTERACTIVE ENROLLMENT & TRIAL LESSON MODAL ================= -->
+  <div id="enrollment-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md modal-hidden transition-all duration-300">
+    
+    <div class="relative w-full max-w-lg glass-panel rounded-3xl p-6 sm:p-8 border border-brand-lime/40 shadow-2xl overflow-hidden">
+      
+      <!-- Close Button -->
+      <button onclick="closeEnrollmentModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-full bg-white/5 hover:bg-white/10 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Content State: Form -->
+      <div id="modal-form-state">
+        
+        <div class="mb-6">
+          <span class="bg-brand-lime/15 text-brand-lime font-mono text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider inline-block mb-2">
+            Official Cohort Registration
+          </span>
+          <h3 class="font-display text-2xl font-extrabold text-white">
+            Book Free Diagnostic & Trial Lesson
+          </h3>
+          
+          <!-- Locked Monthly Fee Confirmation -->
+          <div class="mt-3 p-3 rounded-xl bg-brand-card border border-brand-lime/30 flex items-center justify-between text-xs">
+            <div>
+              <span class="text-slate-400 block font-mono">Monthly Tuition Rate:</span>
+              <span class="font-display font-extrabold text-brand-lime text-base">999,000 UZS / month</span>
+            </div>
+            <div class="text-right">
+              <span class="bg-emerald-500/20 text-emerald-400 font-mono px-2 py-0.5 rounded text-[10px] font-bold">
+                100% Free Trial Included
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <form id="enrollment-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+          
+          <!-- Full Name -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
+              Full Name *
+            </label>
+            <div class="relative">
+              <i data-lucide="user" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="student-name" required placeholder="e.g. Jasurbek Alimov" class="w-full bg-brand-dark border border-brand-border focus:border-brand-lime rounded-xl py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors">
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
+              Phone Number (Uzbekistan) *
+            </label>
+            <div class="relative">
+              <i data-lucide="phone" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="tel" id="student-phone" required placeholder="+998 90 123 45 67" value="+998 " class="w-full bg-brand-dark border border-brand-border focus:border-brand-lime rounded-xl py-2.5 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none transition-colors font-mono">
+            </div>
+          </div>
+
+          <!-- Preferred Branch Selector -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
+              Select Preferred Campus *
+            </label>
+            <div class="relative">
+              <i data-lucide="map-pin" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <select id="student-branch" class="w-full bg-brand-dark border border-brand-border focus:border-brand-lime rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none transition-colors appearance-none">
+                <option value="Yunusabad Flagship">1. Yunusabad Campus (Mega Planet / Shahriston)</option>
+                <option value="Chilonzor Campus">2. Chilonzor Campus (Mirzo Ulugbek Metro)</option>
+                <option value="Sergeli Campus">3. Sergeli Campus (Metro Station 4)</option>
+                <option value="Mirabad Campus">4. Mirabad Central Campus (Grand Mir)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Current Level & Preferred Time in Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
+                Current Level
+              </label>
+              <select id="student-level" class="w-full bg-brand-dark border border-brand-border focus:border-brand-lime rounded-xl py-2.5 px-3 text-sm text-white focus:outline-none transition-colors">
+                <option value="Beginner (A1-A2)">Beginner (A1-A2)</option>
+                <option value="Intermediate (B1)" selected>Intermediate (B1)</option>
+                <option value="Upper-Intermediate (B2)">Upper-Intermediate (B2)</option>
+                <option value="IELTS Candidate (Target 7.5+)">IELTS Candidate (7.5+)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
+                Preferred Time Slot
+              </label>
+              <select id="student-time" class="w-full bg-brand-dark border border-brand-border focus:border-brand-lime rounded-xl py-2.5 px-3 text-sm text-white focus:outline-none transition-colors">
+                <option value="Morning (09:00 - 10:30)">Morning (09:00 - 10:30)</option>
+                <option value="Afternoon (14:30 - 16:00)">Afternoon (14:30 - 16:00)</option>
+                <option value="Evening (18:30 - 20:00)" selected>Evening (18:30 - 20:00)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-lime hover:bg-brand-limeHover text-black font-display font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-brand-lime/30 transition-all flex items-center justify-center gap-2 active:scale-95">
+              <span>Confirm & Lock 999,000 UZS Slot</span>
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <p class="text-[11px] font-mono text-center text-slate-400">
+            Our campus coordinator will call you within 15 minutes to schedule your placement interview.
+          </p>
+
+        </form>
+
+      </div>
+
+      <!-- Modal Content State: Success Confirmation -->
+      <div id="modal-success-state" class="hidden text-center py-8 space-y-4">
+        <div class="w-20 h-20 rounded-full bg-brand-lime/15 border-2 border-brand-lime flex items-center justify-center text-brand-lime mx-auto animate-bounce">
+          <i data-lucide="party-popper" class="w-10 h-10"></i>
+        </div>
+        <span class="bg-emerald-500/20 text-emerald-400 font-mono text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider inline-block">
+          Application Received!
+        </span>
+        <h3 class="font-display text-3xl font-extrabold text-white">
+          Welcome to PROPPER!
+        </h3>
+        <p class="text-sm text-slate-300 max-w-sm mx-auto">
+          Your free trial lesson is reserved at <span id="success-branch-name" class="text-brand-lime font-bold">Yunusabad Campus</span> with tuition rate fixed at <span class="text-brand-lime font-mono font-bold">999,000 UZS / month</span>.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 text-left max-w-xs mx-auto space-y-1">
+          <div><strong class="text-white">Applicant:</strong> <span id="success-student-name">Jasur Alimov</span></div>
+          <div><strong class="text-white">Phone:</strong> <span id="success-student-phone">+998 90 123 45 67</span></div>
+          <div><strong class="text-white">Status:</strong> <span class="text-emerald-400">Coordinator assigned</span></div>
+        </div>
+
+        <button onclick="closeEnrollmentModal()" class="px-6 py-2.5 rounded-xl bg-brand-lime text-black font-display font-bold text-xs uppercase tracking-wider">
+          Return to Website
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
+
+    // 2. Audio Ambiance / Click Tone Feedback (Web Audio API Synthesizer)
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function playTone(freq = 440, type = 'sine', duration = 0.08) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        // Audio policy ignore
+      }
+    }
+
+    function toggleAudioFeedback() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('sound-icon');
+      if (soundEnabled) {
+        icon.setAttribute('data-lucide', 'volume-2');
+        playTone(600, 'triangle', 0.1);
+      } else {
+        icon.setAttribute('data-lucide', 'volume-x');
+      }
+      lucide.createIcons();
+    }
+
+    // Attach gentle click tone to major buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('a')) {
+        playTone(520, 'sine', 0.04);
+      }
+    });
+
+    // 3. Smooth Counter Animation on Scroll (Intersection Observer)
+    let countersAnimated = false;
+    const statsSection = document.getElementById('stats-section');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          startCounters();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    if (statsSection) {
+      counterObserver.observe(statsSection);
+    }
+
+    function startCounters() {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const decimals = parseInt(counter.getAttribute('data-decimals') || '0');
+        const duration = 2000; // 2 seconds
+        const startTime = performance.now();
+
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Easing: easeOutExpo
+          const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const currentVal = (easeOut * target);
+
+          if (decimals > 0) {
+            counter.innerText = currentVal.toFixed(decimals);
+          } else {
+            counter.innerText = Math.floor(currentVal).toLocaleString();
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            if (decimals > 0) {
+              counter.innerText = target.toFixed(decimals);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          }
+        }
+
+        requestAnimationFrame(updateCount);
+      });
+    }
+
+    // 4. Branch Selector Data & Interactive Engine
+    const branchesData = [
+      {
+        name: "Yunusabad Flagship Campus",
+        badge: "Flagship Campus • 580 Active Students",
+        address: "Tashkent, Yunusabad District, 4th Quarter, Building 14/2",
+        landmark: "Landmark: 150m from Mega Planet & Shahriston Metro",
+        hours: "Monday – Saturday: 08:30 – 21:30 | Sun Mocks: 10:00 – 16:00",
+        phone: "+998 78 555-77-91",
+        facilities: "8 Modern Studios, 40-Seat Mock Arena, Coffee Bar",
+        mapsQuery: "Yunusabad+Tashkent+Mega+Planet",
+        pinId: "pin-0",
+        accent: "#D4FF00"
+      },
+      {
+        name: "Chilonzor Campus",
+        badge: "West Hub • 390 Active Students",
+        address: "Tashkent, Chilonzor District, 9th Quarter, Katartal Street 24",
+        landmark: "Landmark: Near Mirzo Ulugbek Metro & Bunyodkor Stadium",
+        hours: "Monday – Saturday: 08:30 – 21:00 | Sunday: 10:00 – 17:00",
+        phone: "+998 78 555-77-92",
+        facilities: "6 Multimedia Labs, Silent Study Pods, Tea Lounge",
+        mapsQuery: "Chilonzor+Katartal+Tashkent",
+        pinId: "pin-1",
+        accent: "#00F0FF"
+      },
+      {
+        name: "Sergeli Campus",
+        badge: "South Campus • 280 Active Students",
+        address: "Tashkent, Sergeli District, Yangi Sergeli Avenue, Block 7",
+        landmark: "Landmark: 2 min walk from Metro Station 4 (Afrosiyob Line)",
+        hours: "Monday – Saturday: 08:30 – 21:00 | Sunday: 10:00 – 16:00",
+        phone: "+998 78 555-77-93",
+        facilities: "5 High-Tech Classrooms, Cambridge Testing Room",
+        mapsQuery: "Sergeli+Metro+Station+4+Tashkent",
+        pinId: "pin-2",
+        accent: "#9353FF"
+      },
+      {
+        name: "Mirabad Central Campus",
+        badge: "Central Academic Hub • 200 Active Students",
+        address: "Tashkent, Mirabad District, Nukus Street 88, Business Plaza",
+        landmark: "Landmark: Across from Grand Mir Hotel & Oybek Metro",
+        hours: "Monday – Saturday: 08:30 – 22:00 | Sunday: 09:30 – 18:00",
+        phone: "+998 78 555-77-94",
+        facilities: "Executive Cohort Rooms, Podcast Recording Studio",
+        mapsQuery: "Grand+Mir+Hotel+Nukus+Street+Tashkent",
+        pinId: "pin-3",
+        accent: "#10B981"
+      }
+    ];
+
+    let currentBranchIndex = 0;
+
+    function switchBranch(index) {
+      currentBranchIndex = index;
+      const b = branchesData[index];
+
+      // Update text details
+      document.getElementById('branch-title').innerText = b.name;
+      document.getElementById('branch-badge').innerText = b.badge;
+      document.getElementById('branch-address').innerText = b.address;
+      document.getElementById('branch-landmark').innerText = b.landmark;
+      document.getElementById('branch-hours').innerText = b.hours;
+      document.getElementById('branch-phone').innerText = b.phone;
+      document.getElementById('branch-facilities').innerText = b.facilities;
+      document.getElementById('branch-maps-link').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapsQuery)}`;
+
+      // Update Tab styling
+      const tabs = document.querySelectorAll('#branch-tabs .branch-tab-btn');
+      tabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.className = "branch-tab-btn active px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 bg-brand-lime text-black shadow-md";
+        } else {
+          tab.className = "branch-tab-btn px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-white/5";
+        }
+      });
+
+      // Update Map pin highlights
+      [0, 1, 2, 3].forEach(i => {
+        const pin = document.getElementById(`pin-${i}`);
+        if (pin) {
+          if (i === index) {
+            pin.setAttribute('r', '8');
+            pin.setAttribute('stroke', '#FFFFFF');
+            pin.setAttribute('stroke-width', '2');
+          } else {
+            pin.setAttribute('r', '6');
+            pin.removeAttribute('stroke');
+          }
+        }
+      });
+
+      // Reset copy button text
+      document.getElementById('copy-text').innerText = 'Copy Address';
+    }
+
+    function copyCurrentAddress() {
+      const b = branchesData[currentBranchIndex];
+      navigator.clipboard.writeText(`${b.name}: ${b.address} (${b.landmark})`);
+      document.getElementById('copy-text').innerText = 'Copied!';
+      setTimeout(() => {
+        document.getElementById('copy-text').innerText = 'Copy Address';
+      }, 2500);
+    }
+
+    function bookForCurrentBranch() {
+      const b = branchesData[currentBranchIndex];
+      openEnrollmentModal(`Selected: ${b.name}`);
+      const select = document.getElementById('student-branch');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(b.name.split(' ')[0])) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // 5. Hall of Fame Filtering
+    function filterHallOfFame(score) {
+      const buttons = document.querySelectorAll('.hof-filter');
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'bg-brand-purple', 'text-white');
+        btn.classList.add('text-slate-300');
+      });
+
+      event.target.classList.add('active', 'bg-brand-purple', 'text-white');
+      event.target.classList.remove('text-slate-300');
+
+      const cards = document.querySelectorAll('.hof-card');
+      cards.forEach(card => {
+        const cardScore = card.getAttribute('data-score');
+        if (score === 'all' || cardScore === score) {
+          card.style.display = 'flex';
+          card.style.animation = 'fadeIn 0.3s ease-in-out';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 6. Interactive Level Placement Mini-Quiz
+    let quizAnswers = {
+      objective: '',
+      level: '',
+      branch: ''
+    };
+
+    function selectQuizAnswer(step, answer) {
+      if (step === 1) {
+        quizAnswers.objective = answer;
+        document.getElementById('q-step-1').classList.add('hidden');
+        document.getElementById('q-step-2').classList.remove('hidden');
+      } else if (step === 2) {
+        quizAnswers.level = answer;
+        document.getElementById('q-step-2').classList.add('hidden');
+        document.getElementById('q-step-3').classList.remove('hidden');
+      } else if (step === 3) {
+        quizAnswers.branch = answer;
+        document.getElementById('q-step-3').classList.add('hidden');
+        document.getElementById('q-result').classList.remove('hidden');
+
+        // Customize result recommendation
+        const rec = document.getElementById('quiz-recommended-course');
+        if (quizAnswers.objective.includes('IELTS')) {
+          rec.innerText = "PROPPER IELTS Advanced Mastery (Target Band 7.5–8.5)";
+        } else if (quizAnswers.objective.includes('Speaking')) {
+          rec.innerText = "PROPPER Executive Conversational Fluency Lab";
+        } else {
+          rec.innerText = "PROPPER Foundation & Pre-IELTS Accelerator";
+        }
+
+        // Fire celebratory mini-confetti
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.7 }
+        });
+      }
+      playTone(580, 'sine', 0.05);
+    }
+
+    function restartQuiz() {
+      document.getElementById('q-result').classList.add('hidden');
+      document.getElementById('q-step-3').classList.add('hidden');
+      document.getElementById('q-step-2').classList.add('hidden');
+      document.getElementById('q-step-1').classList.remove('hidden');
+    }
+
+    function claimQuizResult() {
+      openEnrollmentModal(`Quiz Result: ${quizAnswers.objective}`);
+      // Pre-select branch if matched
+      const select = document.getElementById('student-branch');
+      if (select && quizAnswers.branch) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.toLowerCase().includes(quizAnswers.branch.split(' ')[0].toLowerCase())) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // 7. Enrollment Modal Handlers
+    const modal = document.getElementById('enrollment-modal');
+    const modalFormState = document.getElementById('modal-form-state');
+    const modalSuccessState = document.getElementById('modal-success-state');
+
+    function openEnrollmentModal(source = '') {
+      modal.classList.remove('modal-hidden');
+      modal.classList.add('modal-visible');
+      modalFormState.classList.remove('hidden');
+      modalSuccessState.classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+      playTone(650, 'sine', 0.06);
+    }
+
+    function closeEnrollmentModal() {
+      modal.classList.add('modal-hidden');
+      modal.classList.remove('modal-visible');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeEnrollmentModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('modal-hidden')) {
+        closeEnrollmentModal();
+      }
+    });
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('student-name').value;
+      const phone = document.getElementById('student-phone').value;
+      const branch = document.getElementById('student-branch').value;
+
+      document.getElementById('success-student-name').innerText = name;
+      document.getElementById('success-student-phone').innerText = phone;
+      document.getElementById('success-branch-name').innerText = branch;
+
+      modalFormState.classList.add('hidden');
+      modalSuccessState.classList.remove('hidden');
+
+      // Trigger Confetti Celebration
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#D4FF00', '#00F0FF', '#9353FF', '#FFFFFF']
+      });
+
+      playTone(800, 'triangle', 0.2);
+    }
+
+    // 8. Mobile Navigation Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>
